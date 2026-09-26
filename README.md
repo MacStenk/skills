@@ -37,6 +37,16 @@ muss die Frage enger gefasst werden.
 Schreibzugriff auf einen Ordner genügen. Wer Zugänge hat, kann den Ablauf
 günstiger und schärfer fahren; das steht am Ende der Anleitung.
 
+### telegram-kanal
+
+Einen Telegram-Kanal über die Bot-Schnittstelle bespielen: Beiträge in Telegram-HTML setzen,
+Länge und Auszeichnungen nachzählen, senden und über die öffentliche Vorschau gegenlesen.
+
+Rendern, Prüfen und Gegenlesen laufen ohne Konto. Wer senden will, braucht einen Bot von
+@BotFather. Vor dem Absenden zählt das Skript nach: sichtbare Zeichen, unbekannte
+Auszeichnungen, unmaskierte Klammern, Länge der Kopfzeile. Ohne diese Zählung weist die
+Schnittstelle einen Beitrag mit `can't parse entities` komplett ab, und niemand merkt, warum.
+
 ## Warum auf Deutsch
 
 Die Beispiele, Suchbegriffe und Bewertungen in vergleichbaren Werkzeugen sind
