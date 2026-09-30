@@ -13,6 +13,7 @@ Ist in PROFIL das Feld „schluss_fakten“ gesetzt, steht es wörtlich als letz
 Hook, der Fakt mit Quelle, die Einordnung, ein kurzer Absatz dazu, Schlusszeile (falls gesetzt).
 Jede Version enthält nur den Fakt und die Einordnung aus ihrer Zeile in der ZUORDNUNG. Keine Fakten aus anderen Zeilen übernehmen.
 Die Einordnung wird sinngemäß übernommen, nicht umgedeutet.
+Der kurze Absatz enthält Rat oder Haltung, keine Behauptungen über Leser, Zahlen oder Ursachen, die nicht in FAKTEN stehen.
 
 # REGELN FÜR DIE QUELLE
 - Kurzname und Jahr stehen im Text, z. B. „laut Bitkom, 2025“.
