@@ -60,6 +60,11 @@ niemand nach vier Wochen mehr, was der nächste Schritt ist. Die Anleitung
 schreibt deshalb in die erzeugte Datei hinein, wie es weitergeht, nicht
 daneben.
 
+**Doku wandert mit.** Bekommt ein Skill eine neue Funktion oder ändert sich seine
+Bedienung, gehören die README im Skill-Ordner und sein Abschnitt in der README der
+Sammlung in denselben Commit. Vor jedem Pull Request beide gegen die `SKILL.md` lesen.
+Nichts davon aktualisiert sich von selbst.
+
 **Was nicht belegt ist, wird so genannt.** Zahlen bekommen Quelle und Datum.
 Ungeprüftes bleibt als ungeprüft markiert, auch wenn es die Aussage schwächt.
 
