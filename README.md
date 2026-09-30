@@ -51,7 +51,9 @@ Schnittstelle einen Beitrag mit `can't parse entities` komplett ab, und niemand 
 
 LinkedIn-Posts auf Deutsch in drei Versionen schreiben: zu einem Angebot, das du verkaufst,
 oder als Fakten-Post zu deinem Fachthema. Du gibst Fakten und Belege einmal in einer Datei
-vor, der Skill schreibt nur daraus und erfindet nichts dazu.
+vor, der Skill schreibt nur daraus und erfindet nichts dazu. Hast du für ein
+Thema noch keine Fakten, schlägt er dir welche aus Primärquellen vor, mit wörtlichem
+Zitat. Du wählst aus.
 
 Jede Version wird zweimal geprüft. Ein Skript zählt Wortzahl, Floskeln, Gedankenstriche und
 Schlusszeile nach, bei Fakten-Posts auch, ob eine Quelle mit Jahr genannt ist. Danach liest

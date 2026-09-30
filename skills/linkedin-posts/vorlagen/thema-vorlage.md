@@ -5,6 +5,7 @@
 
 ## FAKTEN
 Jeder Fakt mit Quelle (Kurzname, Jahr) und Link. Nur Fakten aus Quellen, die du selbst gelesen hast.
+Optional eingerückt darunter: `Beleg: „<wörtliches Zitat>“ (abgerufen <Datum>)`.
 1. [BITTE AUSFÜLLEN: Aussage] | Quelle: [BITTE AUSFÜLLEN: Kurzname], [BITTE AUSFÜLLEN: Jahr] | [BITTE AUSFÜLLEN: Link]
 2. [BITTE AUSFÜLLEN: Aussage] | Quelle: [BITTE AUSFÜLLEN: Kurzname], [BITTE AUSFÜLLEN: Jahr] | [BITTE AUSFÜLLEN: Link]
 3. [BITTE AUSFÜLLEN: Aussage] | Quelle: [BITTE AUSFÜLLEN: Kurzname], [BITTE AUSFÜLLEN: Jahr] | [BITTE AUSFÜLLEN: Link]

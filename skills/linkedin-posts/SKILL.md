@@ -87,10 +87,18 @@ Vorhandene Angebote und Themen (Dateinamen in `angebote/` und `themen/` ohne `.m
 
 1. Existiert `themen/<name>.md` schon: abbrechen und Bescheid geben.
 2. `<skill>/vorlagen/thema-vorlage.md` nach `themen/<name>.md` kopieren.
-3. Den Nutzer der Reihe nach fragen: Zielgruppe, dann die Fakten (jeweils Aussage, Quelle als Kurzname, Jahr und Link), dann für jede der drei Versionen Lesergruppe, Blickwinkel, Fakt-Nummer und Einordnung (ein Satz, was der Fakt für die Leser bedeutet). Pro Nachricht höchstens drei Fragen.
-4. Nur eintragen, was der Nutzer sagt. Keine Fakten, Zahlen, Quellen oder Links ergänzen. Fehlt bei einem Fakt Quelle, Jahr oder Link, nachfragen.
-5. Hat `profil.json` kein Feld `schluss_fakten`: einmal fragen, ob Fakten-Posts mit einer eigenen Schlusszeile enden sollen (z. B. `→ Mehr dazu: <Link>`), und die Antwort als `schluss_fakten` eintragen. Leer ist erlaubt.
-6. Die fertige Datei zeigen und fragen, ob Posts dazu geschrieben werden sollen.
+3. Den Nutzer nach der Zielgruppe fragen, dann: „Haben Sie Fakten mit Quelle, oder soll ich welche vorschlagen?“ (Anrede aus `profil.json`).
+   - Eigene Fakten: jeweils Aussage, Quelle als Kurzname, Jahr und Link abfragen.
+   - Vorschlagen: Schritt 4.
+   Danach für jede der drei Versionen Lesergruppe, Blickwinkel, Fakt-Nummer und Einordnung (ein Satz, was der Fakt für die Leser bedeutet) abfragen. Pro Nachricht höchstens drei Fragen.
+4. Recherche (nur wenn der Nutzer Vorschläge will):
+   1. Einen Subagenten starten (Agent-Tool, Typ general-purpose). Der Prompt besteht nur aus dem Inhalt von `<skill>/references/recherche-prompt.md` bis einschließlich der Zeile `# THEMA`, dann dem Themennamen und dem Abschnitt ZIELGRUPPE aus der Themendatei. Ohne Werkzeug für Subagenten: die Recherche selbst nach diesem Prompt ausführen.
+   2. Jede vorgeschlagene Quelle selbst aufrufen und das Beleg-Zitat dort suchen. Gefunden: „geprüft“. Nicht gefunden oder Seite nicht lesbar: „nicht bestätigt“. Nicht bestätigte Fakten nur mit diesem Vermerk zeigen.
+   3. Dem Nutzer die Liste mit Aussage, Quelle, Link, Hinweis und Prüfvermerk zeigen. Ihn bitten, die Quellen selbst anzusehen, und drei Fakten auswählen lassen.
+   4. Nur die ausgewählten Fakten eintragen, jeweils mit der Zeile `Beleg: „…“ (abgerufen <Datum>)` eingerückt darunter. Die Aussage nicht umformulieren.
+5. Nur eintragen, was der Nutzer sagt oder aus der Recherche ausgewählt hat. Keine Fakten, Zahlen, Quellen oder Links ergänzen. Fehlt bei einem Fakt Quelle, Jahr oder Link, nachfragen.
+6. Hat `profil.json` kein Feld `schluss_fakten`: einmal fragen, ob Fakten-Posts mit einer eigenen Schlusszeile enden sollen (z. B. `→ Mehr dazu: <Link>`), und die Antwort als `schluss_fakten` eintragen. Leer ist erlaubt.
+7. Die fertige Datei zeigen und fragen, ob Posts dazu geschrieben werden sollen.
 
 ## Ablauf E: Fakten-Posts schreiben (`/linkedin-posts thema <name>`)
 
@@ -151,4 +159,4 @@ Danach `entwurf.txt` löschen. Dem Nutzer den Dateipfad nennen und die drei Hook
 - Nichts posten, nichts versenden. Der Skill erzeugt nur Dateien.
 - `references/`, `scripts/` und `vorlagen/` nicht verändern.
 - Angebote: Nur Fakten aus der Angebotsdatei verwenden. Belege mit `[in Arbeit]` nie verwenden.
-- Themen: Nur Fakten aus der Themendatei verwenden, jeweils mit Quelle und Jahr. Keine eigene Recherche, keine Fakten aus dem Gedächtnis.
+- Themen: Nur Fakten aus der Themendatei verwenden, jeweils mit Quelle und Jahr. Recherche nur in Ablauf D und nur mit Auswahl durch den Nutzer. Keine Fakten aus dem Gedächtnis.

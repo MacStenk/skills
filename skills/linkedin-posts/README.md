@@ -25,7 +25,7 @@ Angebote:
 - `/linkedin-posts <name>` schreibt, prüft und speichert drei Posts nach `posts/`.
 
 Fakten-Posts:
-- `/linkedin-posts thema neu <name>` legt ein Thema an. Du gibst die Fakten vor, jeweils mit Quelle, Jahr und Link.
+- `/linkedin-posts thema neu <name>` legt ein Thema an. Du gibst die Fakten vor, jeweils mit Quelle, Jahr und Link, oder lässt dir welche vorschlagen: Ein Recherche-Agent sucht Primärquellen und zitiert jede Zahl wörtlich, der Skill prüft die Zitate auf der Quellseite nach, und du wählst aus. Nur was du auswählst, kommt in die Themendatei.
 - `/linkedin-posts thema <name>` schreibt, prüft und speichert drei Fakten-Posts. Die Quelle steht kurz im Text, der Link in der Datei zum Einfügen als ersten Kommentar.
 
 Übersicht: `/linkedin-posts` zeigt Angebote, Themen und die letzten Posts.
