@@ -22,6 +22,7 @@ import sys
 
 CTA = None  # wird aus profil.json gesetzt
 ART = "angebot"  # oder "fakten", per --art
+VERKAUF = None  # Fakten-Modus: CTA aus profil.json, darf nicht im Post stehen
 EXPECTED_BLOCKS = 3
 WORD_BUDGET = (125, 155)
 MAX_CHARS = 1200
@@ -101,6 +102,9 @@ def check(body):
     text = body.replace(CTA, "") if CTA else body
     low = text.lower()
 
+    if ART == "fakten" and VERKAUF and VERKAUF in text:
+        problems.append("Verkaufszeile (cta) im Fakten-Post, dort gehört nur schluss_fakten hin")
+
     if ART == "fakten" and not YEAR.search(text):
         problems.append("Keine Jahreszahl gefunden (Quelle mit Jahr nennen)")
 
@@ -153,6 +157,8 @@ def load_profil(path, art="angebot"):
     except FileNotFoundError:
         sys.exit(f"profil.json nicht gefunden: {path}")
     if art == "fakten":
+        global VERKAUF
+        VERKAUF = (profil.get("cta") or "").strip() or None
         schluss = (profil.get("schluss_fakten") or "").strip()
         if "[BITTE AUSFÜLLEN" in schluss:
             sys.exit(f"schluss_fakten in {path} ist noch nicht ausgefüllt")

@@ -19,7 +19,7 @@ Die persönlichen Daten liegen außerhalb des Skills im Arbeitsordner. Standard:
 └── posts/               fertige Posts
 ```
 
-Wenn der Arbeitsordner oder `profil.json` fehlt: Lege den Ordner an, kopiere `vorlagen/profil-vorlage.json` als `profil.json` hinein und frage den Nutzer nach Name, Anrede (Sie oder du) und Kontakt-URL. Trage die Antworten ein. Erst danach weitermachen.
+Wenn der Arbeitsordner oder `profil.json` fehlt: Lege den Ordner an, kopiere `vorlagen/profil-vorlage.json` als `profil.json` hinein und frage den Nutzer nach Name, Anrede (Sie oder du), Kontakt-URL und ob Fakten-Posts mit einer eigenen Schlusszeile enden sollen (z. B. `→ Mehr dazu: <Link>`, leer ist erlaubt). Trage die Antworten ein, die Schlusszeile als `schluss_fakten`. Erst danach weitermachen.
 
 Die Skill-Dateien liegen im Ordner dieser SKILL.md. Im Folgenden ist `<skill>` dieser Ordner.
 
@@ -48,6 +48,8 @@ Einen Subagenten starten (Agent-Tool, Typ general-purpose). Er darf den Schreibp
 3. der Zeile `# POSTS` und dem Inhalt von `entwurf.txt`.
 
 Keine eigenen Erklärungen, Absichten oder Hinweise dazuschreiben.
+
+Ohne Werkzeug für Subagenten (andere Agenten als Claude Code): den Review selbst in einem getrennten Durchgang ausführen, nur mit diesem Prompt als Grundlage, und dem Nutzer sagen, dass ein Review durch den Schreiber selbst schwächer ist.
 
 Meldet der Review Verstöße: nur die gemeldeten Stellen korrigieren, danach Schritt 3 erneut ausführen und einen neuen Review-Subagenten starten. Höchstens 2 Review-Runden. Bleiben Verstöße, dem Nutzer den Review-Bericht zeigen und fragen.
 
@@ -115,6 +117,8 @@ Einen Subagenten starten (Agent-Tool, Typ general-purpose). Er darf den Schreibp
 3. der Zeile `# POSTS` und dem Inhalt von `entwurf.txt`.
 
 Keine eigenen Erklärungen, Absichten oder Hinweise dazuschreiben.
+
+Ohne Werkzeug für Subagenten (andere Agenten als Claude Code): den Review selbst in einem getrennten Durchgang ausführen, nur mit diesem Prompt als Grundlage, und dem Nutzer sagen, dass ein Review durch den Schreiber selbst schwächer ist.
 
 Meldet der Review Verstöße: nur die gemeldeten Stellen korrigieren, danach Schritt 3 erneut ausführen und einen neuen Review-Subagenten starten. Höchstens 2 Review-Runden. Bleiben Verstöße, dem Nutzer den Review-Bericht zeigen und fragen.
 
