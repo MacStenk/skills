@@ -5,8 +5,12 @@ Aufruf:
     python3 check_posts.py entwurf.txt --profil ~/linkedin-posts/profil.json
     pbpaste | python3 check_posts.py --profil ~/linkedin-posts/profil.json
 
+    python3 check_posts.py entwurf.txt --art fakten
+
 Ohne --profil wird $LINKEDIN_POSTS_DIR/profil.json gesucht, sonst
 ~/linkedin-posts/profil.json. Die CTA-Zeile kommt aus dem Feld "cta".
+Mit --art fakten kommt die Schlusszeile aus dem Feld "schluss_fakten"
+(leer = keine Schlusszeile), und jede Version braucht eine Jahreszahl.
 
 Exit-Code 0 = alles OK, 1 = mindestens eine Version fällt durch.
 """
@@ -17,6 +21,7 @@ import re
 import sys
 
 CTA = None  # wird aus profil.json gesetzt
+ART = "angebot"  # oder "fakten", per --art
 EXPECTED_BLOCKS = 3
 WORD_BUDGET = (125, 155)
 MAX_CHARS = 1200
@@ -44,6 +49,7 @@ EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿⬀-⯿️]")
 HASHTAG = re.compile(r"(?<![\w/])#\w+")
 BOLD = re.compile(r"\*\*(.+?)\*\*")
 DASH = re.compile(r"—| – ")
+YEAR = re.compile(r"\b(19|20)\d{2}\b")
 
 
 def parse(text):
@@ -92,8 +98,11 @@ def check(body):
     if not lo <= words <= hi:
         problems.append(f"{words} Wörter (Budget {lo}–{hi})")
 
-    text = body.replace(CTA, "")
+    text = body.replace(CTA, "") if CTA else body
     low = text.lower()
+
+    if ART == "fakten" and not YEAR.search(text):
+        problems.append("Keine Jahreszahl gefunden (Quelle mit Jahr nennen)")
 
     for term in ESCALATION:
         if re.search(r"\b" + re.escape(term), low):
@@ -126,13 +135,14 @@ def check(body):
     if emoji:
         problems.append(f"Emoji gefunden: {''.join(emoji)}")
 
-    if lines[-1].strip() != CTA:
-        problems.append("CTA fehlt oder weicht ab (muss letzte Zeile sein)")
+    if CTA and lines[-1].strip() != CTA:
+        name = "Schlusszeile" if ART == "fakten" else "CTA"
+        problems.append(f"{name} fehlt oder weicht ab (muss letzte Zeile sein)")
 
     return problems, len(body), words
 
 
-def load_profil(path):
+def load_profil(path, art="angebot"):
     if not path:
         base = os.environ.get("LINKEDIN_POSTS_DIR",
                               os.path.expanduser("~/linkedin-posts"))
@@ -142,6 +152,11 @@ def load_profil(path):
             profil = json.load(f)
     except FileNotFoundError:
         sys.exit(f"profil.json nicht gefunden: {path}")
+    if art == "fakten":
+        schluss = (profil.get("schluss_fakten") or "").strip()
+        if "[BITTE AUSFÜLLEN" in schluss:
+            sys.exit(f"schluss_fakten in {path} ist noch nicht ausgefüllt")
+        return schluss or None
     cta = (profil.get("cta") or "").strip()
     if not cta:
         sys.exit(f"Feld \"cta\" fehlt oder ist leer in {path}")
@@ -151,12 +166,15 @@ def load_profil(path):
 
 
 def main():
-    global CTA
+    global CTA, ART
     ap = argparse.ArgumentParser(description="LinkedIn-Posts mechanisch prüfen")
     ap.add_argument("datei", nargs="?", help="Entwurf (ohne Angabe: stdin)")
     ap.add_argument("--profil", help="Pfad zu profil.json")
+    ap.add_argument("--art", choices=["angebot", "fakten"], default="angebot",
+                    help="angebot (Standard) oder fakten")
     args = ap.parse_args()
-    CTA = load_profil(args.profil)
+    ART = args.art
+    CTA = load_profil(args.profil, args.art)
     text = open(args.datei, encoding="utf-8").read() if args.datei \
         else sys.stdin.read()
     blocks = parse(text)
