@@ -47,6 +47,17 @@ Rendern, Prüfen und Gegenlesen laufen ohne Konto. Wer senden will, braucht eine
 Auszeichnungen, unmaskierte Klammern, Länge der Kopfzeile. Ohne diese Zählung weist die
 Schnittstelle einen Beitrag mit `can't parse entities` komplett ab, und niemand merkt, warum.
 
+### linkedin-posts
+
+LinkedIn-Posts auf Deutsch in drei Versionen schreiben: zu einem Angebot, das du verkaufst,
+oder als Fakten-Post zu deinem Fachthema. Du gibst Fakten und Belege einmal in einer Datei
+vor, der Skill schreibt nur daraus und erfindet nichts dazu.
+
+Jede Version wird zweimal geprüft. Ein Skript zählt Wortzahl, Floskeln, Gedankenstriche und
+Schlusszeile nach, bei Fakten-Posts auch, ob eine Quelle mit Jahr genannt ist. Danach liest
+ein zweiter Agent, der den Text nicht geschrieben hat, jede Aussage gegen deine Datei.
+Braucht nur `python3`, kein Konto.
+
 ## Warum auf Deutsch
 
 Die Beispiele, Suchbegriffe und Bewertungen in vergleichbaren Werkzeugen sind
