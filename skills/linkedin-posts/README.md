@@ -32,9 +32,9 @@ Fakten-Posts:
 
 ## Was geprüft wird
 
-Das Skript `scripts/check_posts.py` zählt nach: Länge des Hooks, Wortzahl, Floskeln, Gegenüberstellungen wie „nicht X, sondern Y“, Gedankenstriche, Fragezeichen, Fett, Hashtags, Emoji und die letzte Zeile. Bei Fakten-Posts (`--art fakten`) muss jede Version eine Jahreszahl enthalten.
+Das Skript `scripts/check_posts.py` zählt nach: Länge des Hooks, Wortzahl, Floskeln, Gegenüberstellungen wie „nicht X, sondern Y“, Gedankenstriche, Fragezeichen, Fett, Hashtags, Emoji und die letzte Zeile. Bei Fakten-Posts (`--art fakten`) muss jede Version eine Jahreszahl enthalten, und deine Kontaktzeile aus den Angebots-Posts darf nicht drinstehen.
 
-Danach liest ein zweiter Agent, der den Text nicht geschrieben hat, jede Version gegen deine Angebots- oder Themendatei. Er meldet Aussagen, die dort nicht stehen, und Fakten, die in der falschen Version gelandet sind.
+Danach liest ein zweiter Agent, der den Text nicht geschrieben hat, jede Version gegen deine Angebots- oder Themendatei. Er meldet Aussagen, die dort nicht stehen, und Fakten, die in der falschen Version gelandet sind. In Claude Code läuft er als eigener Subagent. Bei Agenten ohne Subagenten liest der schreibende Agent selbst in einem getrennten Durchgang gegen, und der Skill sagt dir, dass diese Prüfung schwächer ist.
 
 ## Anpassen
 
